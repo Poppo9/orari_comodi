@@ -6,10 +6,9 @@ settimana = ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','D
 
 st.title('Orari di lavoro 2.0')
 
-st.subheader('Ciao! Sono Poppo, in questa webapp ti aiutereò a formattare i tuoi orari di lavoro settimanali \
-             in diverse visualizzazioni più comode!')
-st.markdown('Per ogni giorno della settimana seleziona orario di inzio e di fine, \
-            se sei di RIPOSO basta che fai sì che i due orari coincidano, risultando in uno slider lungo 0.')
+st.subheader('Ciao! Sono Poppo, con questa WebApp ti aiuto a formattare i tuoi orari di lavoro settimanali in una visualizzazione più comoda!')
+st.markdown('Per ogni giorno della settimana seleziona orario di inzio e di fine.')
+st.markdown('Se sei di RIPOSO basta che fai sì che i due orari coincidano, risultando in uno slider lungo 0.')
 st.markdown('N.B.: Le mezze ore sono indicate come 0.5 negli slider.')
 df_orari = pd.DataFrame(columns=['GIORNO','INIZIO','FINE'])
 for giorno in settimana:
