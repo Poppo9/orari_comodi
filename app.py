@@ -1,12 +1,15 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
-import locale
-
-# Imposta la localizzazione in italiano
-locale.setlocale(locale.LC_TIME, 'it_IT.UTF-8')
 
 settimana = ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica']
+
+# Dizionario per la traduzione dei mesi
+mesi_italiani = {
+    1: 'gennaio', 2: 'febbraio', 3: 'marzo', 4: 'aprile',
+    5: 'maggio', 6: 'giugno', 7: 'luglio', 8: 'agosto',
+    9: 'settembre', 10: 'ottobre', 11: 'novembre', 12: 'dicembre'
+}
 
 st.title('Orari di lavoro 2.0')
 st.subheader('Ciao! Sono Poppo, con questa WebApp ti aiuto a formattare i tuoi orari di lavoro settimanali in una visualizzazione più comoda!')
@@ -39,7 +42,7 @@ def format_time(time):
 
 # Funzione per formattare la data in italiano
 def format_date_italian(date):
-    return date.strftime("%d %B").lower()  # .lower() per avere il mese in minuscolo
+    return f"{date.day} {mesi_italiani[date.month]}"
 
 for i, giorno in enumerate(settimana):
     current_date = selected_date + timedelta(days=i)
@@ -61,7 +64,7 @@ st.dataframe(df_orari,hide_index=True,use_container_width=True)
 # Formattazione personalizzata dell'output
 output = ""
 for _, row in df_orari.iterrows():
-    output += f"{row['GIORNO'].capitalize()}\n"  # Capitalize per avere la prima lettera maiuscola
+    output += f"{row['GIORNO']}\n"
     if row['INIZIO'] == 'RIPOSO':
         output += "RIPOSO\n"
     else:
